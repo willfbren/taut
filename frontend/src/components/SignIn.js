@@ -8,36 +8,16 @@ import {
 	Text,
 	Divider,
 } from "@chakra-ui/core";
-import { useHistory } from "react-router-dom";
 
-function SignUp() {
+function SignIn() {
+    const initialState = {
+        username: "",
+        password: ""
+    }
 
-	let history = useHistory()
+    const [ form, setForm ] = useState(initialState)
 
-	const initialState = {
-		username: "",
-		email: "",
-		password: "",
-	};
-
-	const [form, setForm] = useState(initialState);
-
-	let createUser = (form) => {
-		console.log(form);
-		fetch(`http://localhost:3000/users`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				username: form.username,
-				email: form.email,
-				password: form.password,
-			}),
-		});
-	};
-
-	let setValue = (e) => {
+    let setValue = (e) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
@@ -46,13 +26,13 @@ function SignUp() {
 	};
 
 	let handleSubmit = async (form) => {
-		createUser(form);
+		console.log(form)
 		resetForm();
 	};
 
 	return (
 		<Box maxW="500px" h="100%" mx="auto">
-			<Text fontSize="3xl">Sign Up</Text>
+			<Text fontSize="3xl">Sign In</Text>
 			<Divider />
 			<FormControl isRequired mb="15px">
 				<FormLabel htmlFor="username">Username</FormLabel>
@@ -61,15 +41,6 @@ function SignUp() {
 					placeholder="Username"
 					onChange={(e) => setValue(e)}
 					value={form.username}
-				/>
-			</FormControl>
-			<FormControl isRequired mb="15px">
-				<FormLabel htmlFor="name">Email</FormLabel>
-				<Input
-					name="email"
-					placeholder="Email"
-					onChange={(e) => setValue(e)}
-					value={form.email}
 				/>
 			</FormControl>
 			<FormControl isRequired mb="20px">
@@ -89,4 +60,4 @@ function SignUp() {
 	);
 }
 
-export default SignUp;
+export default SignIn;
