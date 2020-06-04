@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
 	Box,
 	FormControl,
@@ -6,13 +5,13 @@ import {
 	Input,
 	Button,
 	Text,
-	Divider,
+	Flex,
 } from "@chakra-ui/core";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function SignUp() {
-
-	let history = useHistory()
+	let history = useHistory();
 
 	const initialState = {
 		username: "",
@@ -51,41 +50,56 @@ function SignUp() {
 	};
 
 	return (
-		<Box maxW="500px" h="100%" mx="auto">
-			<Text fontSize="3xl">Sign Up</Text>
-			<Divider />
-			<FormControl isRequired mb="15px">
-				<FormLabel htmlFor="username">Username</FormLabel>
-				<Input
-					name="username"
-					placeholder="Username"
-					onChange={(e) => setValue(e)}
-					value={form.username}
-				/>
-			</FormControl>
-			<FormControl isRequired mb="15px">
-				<FormLabel htmlFor="name">Email</FormLabel>
-				<Input
-					name="email"
-					placeholder="Email"
-					onChange={(e) => setValue(e)}
-					value={form.email}
-				/>
-			</FormControl>
-			<FormControl isRequired mb="20px">
-				<FormLabel htmlFor="password">Password</FormLabel>
-				<Input
-					name="password"
-					placeholder="Password"
-					type="password"
-					onChange={(e) => setValue(e)}
-					value={form.password}
-				/>
-			</FormControl>
-			<Button variantColor="teal" onClick={() => handleSubmit(form)}>
-				Submit
-			</Button>
-		</Box>
+		<Flex
+			alignItems="center"
+			justifyContent="center"
+			size="750px"
+			mx="auto"
+		>
+			<Box width="500px">
+				<Text fontSize="4xl" mb="10px">
+					Sign Up
+				</Text>
+				<FormControl isRequired mb="15px">
+					<FormLabel htmlFor="username">Username</FormLabel>
+					<Input
+						name="username"
+						placeholder="Username"
+						onChange={(e) => setValue(e)}
+						value={form.username}
+					/>
+				</FormControl>
+				<FormControl isRequired mb="15px">
+					<FormLabel htmlFor="name">Email</FormLabel>
+					<Input
+						name="email"
+						placeholder="Email"
+						onChange={(e) => setValue(e)}
+						value={form.email}
+					/>
+				</FormControl>
+				<FormControl isRequired mb="20px">
+					<FormLabel htmlFor="password">Password</FormLabel>
+					<Input
+						name="password"
+						placeholder="Password"
+						type="password"
+						onChange={(e) => setValue(e)}
+						value={form.password}
+					/>
+				</FormControl>
+				<Button
+					variantColor="teal"
+					onClick={() => handleSubmit(form)}
+					mr="10px"
+				>
+					Submit
+				</Button>
+				<Button variantColor="pink" onClick={() => history.push("/")}>
+					Cancel
+				</Button>
+			</Box>
+		</Flex>
 	);
 }
 
