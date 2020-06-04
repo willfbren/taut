@@ -6,7 +6,7 @@ const socket = socketIo("http://localhost:3000");
 
 function App() {
 	return (
-		<SignUp />
+		<SignUp socket={socket}/>
 	);
 }
 

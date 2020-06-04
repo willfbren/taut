@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/core";
 
 function SignUp() {
+
 	const initialState = {
 		username: "",
 		email: "",
@@ -44,7 +45,6 @@ function SignUp() {
 	let handleSubmit = async (form) => {
 		createUser(form);
 		resetForm();
-		console.log("check db");
 	};
 
 	return (
