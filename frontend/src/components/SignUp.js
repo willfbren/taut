@@ -22,8 +22,7 @@ function SignUp() {
 	const [form, setForm] = useState(initialState);
 
 	let createUser = (form) => {
-		console.log(form);
-		fetch(`http://localhost:3000/users`, {
+		fetch(`http://localhost:3000/sign-up`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

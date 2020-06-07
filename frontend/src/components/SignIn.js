@@ -6,30 +6,57 @@ import {
 	Button,
 	Text,
 	Flex,
+	useToast
 } from "@chakra-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 function SignIn() {
 	let history = useHistory();
+	let dispatch = useDispatch()
 
-	const initialState = {
+	const toast = useToast()
+
+	const formState = {
 		username: "",
 		password: "",
 	};
-
-	const [form, setForm] = useState(initialState);
+	
+	const [form, setForm] = useState(formState);
 
 	let setValue = (e) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
 	let resetForm = () => {
-		setForm(initialState);
+		setForm(formState);
 	};
 
 	let handleSubmit = async (form) => {
-		console.log(form);
+		fetch('http://localhost:3000/sign-in', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({form}),
+			credentials: 'include'
+		})
+		.then(resp => resp.json())
+		.then(data => {
+			if (data.success) {
+				dispatch({ type: 'LOGIN_SUCCESS', user: data.user })
+				history.push('/')
+			} else {
+				toast({
+					title: 'Error',
+					description: data.message,
+					status: "warning",
+					isClosable: true,
+					position: "top"
+				})
+			}
+		})
 		resetForm();
 	};
 
@@ -70,7 +97,7 @@ function SignIn() {
 				>
 					Submit
 				</Button>
-				<Button variantColor="pink" onClick={() => history.push("/")}>
+				<Button variantColor="pink" onClick={() => history.push('/')}>
 					Cancel
 				</Button>
 			</Box>
