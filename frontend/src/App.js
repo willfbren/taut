@@ -30,7 +30,7 @@ function App() {
 
 	return user ? (
 		<BrowserRouter>
-			<Route exact path="/" component={AppContainer}/>
+			<Route exact path="/" component={ () => <AppContainer user={user} />}/>
 		</BrowserRouter>
 	) : (
 		<BrowserRouter>
