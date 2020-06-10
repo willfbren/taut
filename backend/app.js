@@ -26,13 +26,13 @@ app.use(
 	})
 );
 
-// index
+// users index
 app.get("/users", async function (req, res) {
 	const users = await knex.select("*").from("users");
 	res.json(users);
 });
 
-// create
+// users create
 app.post("/users", async function (req, res) {
 	const newUser = {
 		username: req.body.username,
@@ -48,23 +48,31 @@ app.post("/users", async function (req, res) {
 
 // if user refreshes page i can send a fetch to this endpoint and set the user in redux
 app.get("/check-user", async (req, res) => {
-	res.json(req.session.user || null);
+	res.json({
+		user: req.session.user || null,
+		team: req.session.team || null
+	});
 });
 
 app.post("/sign-in", async (req, res) => {
 	const { username, password } = req.body.form;
 	const [ user ] = await knex("users").where({ username });
+	const [ user_team ] = await knex.select("*").from("user_team").where("user_id", user.id);
+	const [ team ] = await knex.select().from("teams").where({ id: user_team.team_id })
 
 	if (user && (await bcrypt.compare(password, user.password))) {
 		req.session.user = user;
+		req.session.team = team;
 		res.json({ 
 			success: true, 
-			user: user 
+			user: user,
+			team: team 
 		});
 	} else {
 		res.json({
 			success: false,
 			user: null,
+			team: null,
 			message: "Username or password is incorrect.",
 		});
 	}
@@ -89,6 +97,18 @@ app.post("/sign-up", async (req, res) => {
 app.get("/sign-out", async (req, res) => {
 	req.session.destroy()
 })
+
+// team index
+app.get("/teams", async function (req, res) {
+	const teams = await knex.select("*").from("teams");
+	res.json(teams);
+});
+
+// channels index
+app.get("/channels", async function (req, res) {
+	const channels = await knex("channels").where("team_id", req.session.team.id)
+	res.json(channels)
+});
 
 http.listen(3000);
 console.log("Listening on port 3000");

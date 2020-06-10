@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/core";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function SignIn() {
 	let history = useHistory();
@@ -45,7 +45,7 @@ function SignIn() {
 		.then(resp => resp.json())
 		.then(data => {
 			if (data.success) {
-				dispatch({ type: 'LOGIN_SUCCESS', user: data.user })
+				dispatch({ type: 'LOGIN_SUCCESS', user: data.user, team: data.team })
 				history.push('/')
 			} else {
 				toast({

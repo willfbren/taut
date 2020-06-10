@@ -20,8 +20,7 @@ function App() {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data) {
-					dispatch({ type: "LOGIN_SUCCESS", user: data });
-					console.log(data);
+					dispatch({ type: "LOGIN_SUCCESS", user: data.user, team: data.team });
 				} else {
 					console.log("please login or signup to continue");
 				}

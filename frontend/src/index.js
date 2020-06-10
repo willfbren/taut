@@ -8,7 +8,8 @@ import { ThemeProvider, ColorModeProvider, CSSReset } from "@chakra-ui/core";
 
 const initialState = {
 	users: [],
-	currentUser: null
+	currentUser: null,
+	currentTeam: null
 };
 
 const reducer = (currentState, action) => {
@@ -17,13 +18,13 @@ const reducer = (currentState, action) => {
 			return { ...currentState, users: action.userList}
 			break;
 		case 'ADD_USER':
-			return { ...currentState, users: [...currentState.users, action.user] };
+			return { ...currentState, users: [...currentState.users, action.user] }
 			break;
 		case 'LOGIN_SUCCESS':
-			return { ...currentState, currentUser: action.user }
+			return { ...currentState, currentUser: action.user, currentTeam: action.team }
 			break;
 		case 'LOGOUT_SUCCESS':
-			return { ...currentState, currentUser: null }
+			return { ...currentState, currentUser: null, currentTeam: null }
 			break;
 	}
 
