@@ -110,5 +110,18 @@ app.get("/channels", async function (req, res) {
 	res.json(channels)
 });
 
+app.post("/add-channel", async (req, res) => {	
+	const { channel_name, description } = req.body.form
+	
+	const newChannel = {
+		channel_name: channel_name,
+		channel_string: description,
+		team_id: req.session.team.id
+	}
+
+	await knex("channels").insert(newChannel)
+	
+})
+
 http.listen(3000);
 console.log("Listening on port 3000");
