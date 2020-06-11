@@ -1,4 +1,4 @@
-import { Box, Text, List, ListItem, ListIcon, Link } from "@chakra-ui/core";
+import { Box, Text, List, ListItem, ListIcon, Link, Stack, Icon } from "@chakra-ui/core";
 import React, { useEffect, useState } from "react";
 import AddChannel from './AddChannel'
 
@@ -18,17 +18,13 @@ function ChannelNav() {
             <Text fontWeight="700" fontSize="lg" pb="5px">
                 Channels
             </Text>
-            <List spacing={2}>
-                {channels.map((channel) => {
-                    return (
-                        <ListItem key={channel.id}>
-                            <ListIcon icon="chat" color="gray.600" />
-                            <Link>{channel.channel_name}</Link>
-                        </ListItem>
-                    );
-                })}
-                <AddChannel />
-            </List>
+            {channels.map(channel => {
+                return <Stack isInline display="flex" alignItems="center" style={{ cursor: "pointer" }}>
+                    <Icon name="chat" color="gray.400" />
+                    <Text>{channel.channel_name}</Text>
+                </Stack>
+            })}
+            <AddChannel />
         </Box>
     );
 }

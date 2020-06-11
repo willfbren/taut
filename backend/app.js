@@ -35,7 +35,7 @@ app.get("/users", async function (req, res) {
 // users create
 app.post("/users", async function (req, res) {
 	const newUser = {
-		username: req.body.username,
+		name: req.body.name,
 		email: req.body.email,
 		password: req.body.password,
 	};
@@ -55,8 +55,8 @@ app.get("/check-user", async (req, res) => {
 });
 
 app.post("/sign-in", async (req, res) => {
-	const { username, password } = req.body.form;
-	const [ user ] = await knex("users").where({ username });
+	const { email, password } = req.body.form;
+	const [ user ] = await knex("users").where({ email });
 	const [ user_team ] = await knex.select("*").from("user_team").where("user_id", user.id);
 	const [ team ] = await knex.select().from("teams").where({ id: user_team.team_id })
 
@@ -73,7 +73,7 @@ app.post("/sign-in", async (req, res) => {
 			success: false,
 			user: null,
 			team: null,
-			message: "Username or password is incorrect.",
+			message: "Email or password is incorrect.",
 		});
 	}
 });
@@ -83,7 +83,7 @@ app.post("/sign-up", async (req, res) => {
 		const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
 		const newUser = {
-			username: req.body.username,
+			name: req.body.name,
 			email: req.body.email,
 			password: hashedPassword,
 		};
@@ -115,12 +115,16 @@ app.post("/add-channel", async (req, res) => {
 	
 	const newChannel = {
 		channel_name: channel_name,
-		channel_string: description,
+		channel_description: description,
 		team_id: req.session.team.id
 	}
 
 	await knex("channels").insert(newChannel)
-	
+})
+
+app.get("/messages", async (req, res) => {
+	const messages = await knex.select("*").from("messages");
+	res.json(messages);
 })
 
 http.listen(3000);

@@ -16,7 +16,7 @@ function SignUp() {
     const toast = useToast();
 
     const initialState = {
-        username: "",
+        name: "",
         email: "",
         password: "",
     };
@@ -30,7 +30,7 @@ function SignUp() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username: form.username,
+                name: form.name,
                 email: form.email,
                 password: form.password,
             }),
@@ -71,16 +71,16 @@ function SignUp() {
                     Sign Up
                 </Text>
                 <FormControl isRequired mb="15px">
-                    <FormLabel htmlFor="username">Username</FormLabel>
+                    <FormLabel htmlFor="name">Name</FormLabel>
                     <Input
-                        name="username"
-                        placeholder="Username"
+                        name="name"
+                        placeholder="Name"
                         onChange={(e) => setValue(e)}
-                        value={form.username}
+                        value={form.name}
                     />
                 </FormControl>
                 <FormControl isRequired mb="15px">
-                    <FormLabel htmlFor="name">Email</FormLabel>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
                         name="email"
                         placeholder="Email"

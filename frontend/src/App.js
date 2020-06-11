@@ -22,7 +22,7 @@ function App() {
 				if (data) {
 					dispatch({ type: "LOGIN_SUCCESS", user: data.user, team: data.team });
 				} else {
-					console.log("please login or signup to continue");
+					console.log("Please login or signup to continue.");
 				}
 			});
 	}, []);

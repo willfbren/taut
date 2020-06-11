@@ -19,7 +19,7 @@ function SignIn() {
 	const toast = useToast()
 
 	const formState = {
-		username: "",
+		email: "",
 		password: "",
 	};
 	
@@ -72,12 +72,12 @@ function SignIn() {
 					Sign In
 				</Text>
 				<FormControl isRequired mb="15px">
-					<FormLabel htmlFor="username">Username</FormLabel>
+					<FormLabel htmlFor="email">Email</FormLabel>
 					<Input
-						name="username"
-						placeholder="Username"
+						name="email"
+						placeholder="Email"
 						onChange={(e) => setValue(e)}
-						value={form.username}
+						value={form.email}
 					/>
 				</FormControl>
 				<FormControl isRequired mb="20px">

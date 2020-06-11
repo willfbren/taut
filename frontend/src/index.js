@@ -9,7 +9,8 @@ import { ThemeProvider, ColorModeProvider, CSSReset } from "@chakra-ui/core";
 const initialState = {
 	users: [],
 	currentUser: null,
-	currentTeam: null
+	currentTeam: null,
+	currentChannel: null
 };
 
 const reducer = (currentState, action) => {
@@ -25,6 +26,9 @@ const reducer = (currentState, action) => {
 			break;
 		case 'LOGOUT_SUCCESS':
 			return { ...currentState, currentUser: null, currentTeam: null }
+			break;
+		case 'SET_CHANNEL':
+			return { ...currentState, currentChannel: null }
 			break;
 	}
 

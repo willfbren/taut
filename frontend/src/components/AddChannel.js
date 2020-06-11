@@ -15,6 +15,7 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Stack,
 } from "@chakra-ui/core";
 
 function AddChannel() {
@@ -22,44 +23,44 @@ function AddChannel() {
 
     const formState = {
         channel_name: "",
-        description: ""
-    }
+        description: "",
+    };
 
-    const [form, setForm] = useState(formState)
+    const [form, setForm] = useState(formState);
 
-	let setValue = (e) => {
-		setForm({ ...form, [e.target.name]: e.target.value });
-	};
+    let setValue = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
     let handleSubmit = async (form) => {
-        fetch('http://localhost:3000/add-channel', {
-            method: 'POST',
+        fetch("http://localhost:3000/add-channel", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({ form }),
-            credentials: 'include'
-        })
-        resetForm()
-        onClose()
-    }
+            credentials: "include",
+        });
+        resetForm();
+        onClose();
+    };
 
-	let resetForm = () => {
-		setForm(formState);
-	};
+    let resetForm = () => {
+        setForm(formState);
+    };
 
     return (
         <>
-            <ListItem mt="25px">
+            <Stack isInline display="flex" alignItems="center" mt="25px">
                 <IconButton
                     icon="add"
-                    color="gray.300"
+                    variantColor="teal"
                     size="sm"
-                    mr="7px"
+                    isRound="true"
                     onClick={onOpen}
                 />
                 <Link>Add Channel</Link>
-            </ListItem>
+            </Stack>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -75,7 +76,7 @@ function AddChannel() {
                                 name="channel_name"
                                 placeholder="Channel Name"
                                 onChange={(e) => setValue(e)}
-						        value={form.channel_name}
+                                value={form.channel_name}
                             />
                         </FormControl>
                         <FormControl mb="20px">
@@ -86,12 +87,18 @@ function AddChannel() {
                                 name="description"
                                 placeholder="Description"
                                 onChange={(e) => setValue(e)}
-						        value={form.description}
+                                value={form.description}
                             />
                         </FormControl>
                     </ModalBody>
                     <ModalFooter>
-                        <Button variantColor="green" mr={3} onClick={() => handleSubmit(form)}>Create</Button>
+                        <Button
+                            variantColor="green"
+                            mr={3}
+                            onClick={() => handleSubmit(form)}
+                        >
+                            Create
+                        </Button>
                         <Button variantColor="blue" onClick={onClose}>
                             Close
                         </Button>
