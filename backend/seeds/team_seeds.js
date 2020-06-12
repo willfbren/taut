@@ -5,7 +5,8 @@ exports.seed = function (knex) {
         .then(function () {
             // Inserts seed entries
             return knex("teams").insert([
-                { id: 1, team_name: "Flatiron School" },
+                { id: 1, team_name: "Learn Code" },
+                { id: 2, team_name: "Flatiron School" }
             ]);
         });
 };

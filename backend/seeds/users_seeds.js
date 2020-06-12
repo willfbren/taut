@@ -27,6 +27,12 @@ exports.seed = function (knex) {
                     password: hash,
                     name: "Erin Brennan",
                 },
+                {
+                    id: 4,
+                    email: "w@b.com",
+                    password: hash,
+                    name: "Mike Brennan",
+                },
             ]);
         });
 };

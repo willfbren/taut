@@ -10,7 +10,8 @@ const initialState = {
 	users: [],
 	currentUser: null,
 	currentTeam: null,
-	currentChannel: null
+	currentChannel: null,
+	channels: []
 };
 
 const reducer = (currentState, action) => {
@@ -29,6 +30,12 @@ const reducer = (currentState, action) => {
 			break;
 		case 'SET_CHANNEL':
 			return { ...currentState, currentChannel: action.channel }
+			break;
+		case 'GET_CHANNELS':
+			return { ...currentState, channels: action.channels }
+			break;
+		case 'ADD_CHANNEL':
+			return { ...currentState, currentChannel: action.channel, channels: action.channels }
 			break;
 	}
 

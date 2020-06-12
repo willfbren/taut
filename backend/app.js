@@ -51,7 +51,8 @@ app.get("/check-user", async (req, res) => {
 	res.json({
 		user: req.session.user || null,
 		team: req.session.team || null,
-		channel: req.session.channel || null
+		channel: req.session.channel || null,
+		channels: req.session.channels || []
 	});
 });
 
@@ -106,8 +107,9 @@ app.get("/teams", async function (req, res) {
 });
 
 // channels index
-app.get("/channels", async function (req, res) {
-	const channels = await knex("channels").where("team_id", req.session.team.id)
+app.get("/:id/channels", async function (req, res) {
+	const channels = await knex("channels").where("team_id", req.params.id)
+	req.session.channels = channels
 	res.json(channels)
 });
 
@@ -122,19 +124,19 @@ app.post("/add-channel", async (req, res) => {
 
 	await knex("channels").insert(newChannel)
 
+	req.session.channel = newChannel
+
 	res.json(newChannel)
 })
 
-app.post("/set-channel", async (req, res) => {
-	req.session.channel = req.body.selectedChannel
-	console.log(req.session.channel)
-	res.json(req.session.channel)
+app.get("/set-channel/:id", async (req, res) => {
+	const [ channel ] = await knex("channels").where("id", req.params.id)
+	req.session.channel = channel
+	res.json(channel)
 })
 
-// selectedChannel / messages
-
-app.get("/messages", async (req, res) => {
-	const messages = await knex.select("*").from("messages").where("channel_id", req.session.channel.id);
+app.get("/:id/messages", async (req, res) => {
+	const messages = await knex.select("*").from("messages").where("channel_id", req.params.id);
 	res.json(messages);
 })
 

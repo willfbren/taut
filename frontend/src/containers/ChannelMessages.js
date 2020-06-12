@@ -9,7 +9,7 @@ function ChannelMessages() {
     const [ messages, setMessages ] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/messages', {
+        fetch(`http://localhost:3000/${selectedChannel.id}/messages`, {
             credentials: 'include'
         })
         .then(res => res.json())
