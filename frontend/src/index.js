@@ -22,13 +22,13 @@ const reducer = (currentState, action) => {
 			return { ...currentState, users: [...currentState.users, action.user] }
 			break;
 		case 'LOGIN_SUCCESS':
-			return { ...currentState, currentUser: action.user, currentTeam: action.team }
+			return { ...currentState, currentUser: action.user, currentTeam: action.team, currentChannel: action.channel }
 			break;
 		case 'LOGOUT_SUCCESS':
-			return { ...currentState, currentUser: null, currentTeam: null }
+			return { ...currentState, currentUser: null, currentTeam: null, currentChannel: null }
 			break;
 		case 'SET_CHANNEL':
-			return { ...currentState, currentChannel: null }
+			return { ...currentState, currentChannel: action.channel }
 			break;
 	}
 

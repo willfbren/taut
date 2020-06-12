@@ -50,7 +50,8 @@ app.post("/users", async function (req, res) {
 app.get("/check-user", async (req, res) => {
 	res.json({
 		user: req.session.user || null,
-		team: req.session.team || null
+		team: req.session.team || null,
+		channel: req.session.channel || null
 	});
 });
 
@@ -120,6 +121,14 @@ app.post("/add-channel", async (req, res) => {
 	}
 
 	await knex("channels").insert(newChannel)
+
+	res.json(newChannel)
+})
+
+app.post("/set-channel", async (req, res) => {
+	req.session.channel = req.body.selectedChannel
+
+	res.json(req.session.channel)
 })
 
 app.get("/messages", async (req, res) => {

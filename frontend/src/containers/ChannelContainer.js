@@ -1,6 +1,7 @@
-import React from "react";
-import { Box } from "@chakra-ui/core";
+import React, { useEffect } from "react";
+import { Box, Text } from "@chakra-ui/core";
 import { useSelector } from "react-redux";
+import ChannelHeader from '../components/ChannelHeader'
 
 function ChannelContainer() {
     const currentChannel = useSelector((state) => state.currentChannel);
@@ -8,8 +9,12 @@ function ChannelContainer() {
     return (
         <Box h="95%">
             {currentChannel
-                ? currentChannel.channel_name
-                : "No channel selected"
+                ?
+                <ChannelHeader /> 
+                : 
+                <Box display="flex" justifyContent="center" h="100%" alignItems="center">
+                    <Text fontSize="5xl" color="gray.700">No Channel Selected</Text>
+                </Box>
             }
         </Box>
     );

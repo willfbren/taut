@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-    ListItem,
     Link,
     IconButton,
     Modal,
@@ -17,8 +16,11 @@ import {
     Input,
     Stack,
 } from "@chakra-ui/core";
+import { useDispatch } from "react-redux";
 
 function AddChannel() {
+    const dispatch = useDispatch();
+
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const formState = {
@@ -40,9 +42,13 @@ function AddChannel() {
             },
             body: JSON.stringify({ form }),
             credentials: "include",
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            resetForm();
+            onClose();
+            dispatch({ type: 'SET_CHANNEL', channel: data });
         });
-        resetForm();
-        onClose();
     };
 
     let resetForm = () => {
