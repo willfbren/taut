@@ -127,12 +127,14 @@ app.post("/add-channel", async (req, res) => {
 
 app.post("/set-channel", async (req, res) => {
 	req.session.channel = req.body.selectedChannel
-
+	console.log(req.session.channel)
 	res.json(req.session.channel)
 })
 
+// selectedChannel / messages
+
 app.get("/messages", async (req, res) => {
-	const messages = await knex.select("*").from("messages");
+	const messages = await knex.select("*").from("messages").where("channel_id", req.session.channel.id);
 	res.json(messages);
 })
 

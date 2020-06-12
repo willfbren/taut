@@ -4,7 +4,7 @@ import AddChannel from "./AddChannel";
 import { useDispatch } from 'react-redux'
 
 function ChannelNav() {
-    const [channels, setChannels] = useState([]);
+    const [ channels, setChannels ] = useState([]);
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -24,10 +24,7 @@ function ChannelNav() {
             body: JSON.stringify({ selectedChannel }),
             credentials: 'include'
         })
-        .then(res => res.json())
-        .then(data => {
-            dispatch({ type: 'SET_CHANNEL', channel: data })
-        })
+        dispatch({ type: 'SET_CHANNEL', channel: selectedChannel })
     }
 
     return (

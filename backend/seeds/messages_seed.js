@@ -23,6 +23,18 @@ exports.seed = function (knex) {
                     user_id: 3,
                     channel_id: 2,
                 },
+                {
+                    id: 4,
+                    content: "This is a message in the general channel.",
+                    user_id: 1,
+                    channel_id: 1,
+                },
+                {
+                    id: 5,
+                    content: "This is a message in the gaming channel.",
+                    user_id: 1,
+                    channel_id: 3,
+                },
             ]);
         });
 };
