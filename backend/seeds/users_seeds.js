@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const password = "password"
 const hash = bcrypt.hashSync(password, 10)
+const faker = require('faker')
 
 exports.seed = function (knex) {
     // Deletes ALL existing entries
@@ -14,24 +15,49 @@ exports.seed = function (knex) {
                     email: "willfbren@gmail.com",
                     password: hash,
                     name: "Will Brennan",
+                    avatar: null
                 },
                 {
                     id: 2,
-                    email: "chris@gmail.com",
+                    email: faker.internet.email(),
                     password: hash,
-                    name: "Chris Brennan",
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar()
                 },
                 {
                     id: 3,
-                    email: "erin@gmail.com",
+                    email: faker.internet.email(),
                     password: hash,
-                    name: "Erin Brennan",
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar()
                 },
                 {
                     id: 4,
-                    email: "w@b.com",
+                    email: faker.internet.email(),
                     password: hash,
-                    name: "Mike Brennan",
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar()
+                },
+                {
+                    id: 5,
+                    email: faker.internet.email(),
+                    password: hash,
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar()
+                },
+                {
+                    id: 6,
+                    email: faker.internet.email(),
+                    password: hash,
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar()
+                },
+                {
+                    id: 7,
+                    email: faker.internet.email(),
+                    password: hash,
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar()
                 },
             ]);
         });

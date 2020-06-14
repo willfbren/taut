@@ -28,7 +28,7 @@ function ChannelMessages() {
         <Box>
             <Stack>
                 {messages.map(message => {
-                    return <Message key={message.id} name={message.name} content={message.content} user_id={message.user_id} />
+                    return <Message key={message.id} name={message.name} avatar={message.avatar} content={message.content} user_id={message.user_id} />
                 })}
             </Stack>
         </Box>

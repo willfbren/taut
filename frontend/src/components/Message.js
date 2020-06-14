@@ -6,7 +6,7 @@ function Message(props) {
     return (
         <Box mt={3} p={4} shadow="md" borderWidth="1px" borderRadius={5}>
             <Stack isInline display="flex" alignItems="center" >
-                <Avatar name={props.name} size="xs" />
+                <Avatar name={props.name} src={props.avatar} size="xs" />
                 <Heading fontSize="lg">{props.name}</Heading>
             </Stack>
             <Text mt={2}>{props.content}</Text>

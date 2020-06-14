@@ -150,7 +150,8 @@ app.get("/:id/messages", async (req, res) => {
     const user_messages = await knex("users")
         .join("messages", "users.id", "=", "messages.user_id")
         .select(
-			"users.name",
+            "users.name",
+            "users.avatar",
 			"messages.user_id",
 			"messages.id",
             "messages.content",
@@ -162,7 +163,7 @@ app.get("/:id/messages", async (req, res) => {
 });
 
 app.post("/:id/messages", async (req, res) => {
-	const { name, user_id, channel_id, content } = req.body.message
+	const { name, avatar, user_id, channel_id, content } = req.body.message
 
 	const newMessage = {
 		user_id: user_id,
@@ -172,7 +173,7 @@ app.post("/:id/messages", async (req, res) => {
 
 	let [ lastId ] = await knex("messages").insert(newMessage)
 	let [ lastMessage ] = await knex("messages").where({ id: lastId })
-	let message = { ...lastMessage, name }
+	let message = { ...lastMessage, name, avatar }
 
 	io.emit('new-message', message)
 	res.json(message)

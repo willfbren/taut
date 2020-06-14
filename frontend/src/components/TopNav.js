@@ -12,7 +12,7 @@ function TopNav() {
                 {team.team_name}
             </Text>
             <Stack isInline display="flex" alignItems="center" >
-                <Avatar name={user.name} size="sm" />
+                <Avatar name={user.name} src={ user.avatar ? user.avatar : null } size="sm" />
                 <Text>{user.name}</Text>
             </Stack>
         </Box>

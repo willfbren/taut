@@ -9,6 +9,7 @@ function MessageInput() {
 
     const messageState = {
         name: null,
+        avatar: null,
         user_id: null,
         channel_id: null,
         content: ""
@@ -17,7 +18,7 @@ function MessageInput() {
     const [ message, setMessage ] = useState(messageState)
 
     let setValue = (e) => {
-        setMessage({ name: user.name, user_id: user.id, channel_id: channel.id, content: e.target.value })
+        setMessage({ name: user.name, avatar: user.avatar, user_id: user.id, channel_id: channel.id, content: e.target.value })
     }
 
     let handleSubmit = (e) => {

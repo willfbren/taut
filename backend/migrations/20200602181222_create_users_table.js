@@ -5,6 +5,7 @@ exports.up = function(knex) {
         t.string('name')
         t.string('email');
         t.string('password');
+        t.string('avatar');
         t.timestamps();
     })
 };
