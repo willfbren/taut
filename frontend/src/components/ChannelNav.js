@@ -1,4 +1,4 @@
-import { Box, Text, Link, Stack, Icon } from "@chakra-ui/core";
+import { Box, Text, Link, Stack } from "@chakra-ui/core";
 import React, { useEffect } from "react";
 import AddChannel from "./AddChannel";
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,7 +32,7 @@ function ChannelNav() {
 
     return (
         <Box p="15px">
-            <Text fontWeight="700" fontSize="lg" pb="5px">
+            <Text fontWeight="bold" fontSize="lg" pb="5px">
                 Channels
             </Text>
             {channels.map((channel) => {
@@ -42,7 +42,7 @@ function ChannelNav() {
                             isInline
                             display="flex"
                             alignItems="center"
-                            mb="10px"
+                            pb="5px"
                             onClick={ () => channelSelect(channel)}
                         >
                             <Box as={FaRegComment} size="16px" color="teal.300" />

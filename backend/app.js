@@ -37,6 +37,14 @@ app.get("/users/:id", async (req, res) => {
 	res.json(user)
 })
 
+app.get("/:id/users", async (req, res) => {
+    const team = await knex("users")
+        .join("user_team", "users.id", "=", "user_team.user_id")
+        .where("team_id", req.params.id);
+
+    res.json(team)
+})
+
 // users create
 app.post("/users", async function (req, res) {
     const newUser = {
