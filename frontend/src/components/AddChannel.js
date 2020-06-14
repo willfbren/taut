@@ -15,7 +15,7 @@ function AddChannel() {
             <Stack isInline display="flex" alignItems="center" mt="25px">
                 <IconButton
                     icon="add"
-                    variantColor="teal"
+                    color="teal.300"
                     size="sm"
                     isRound="true"
                     onClick={onOpen}

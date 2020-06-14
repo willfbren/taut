@@ -5,7 +5,7 @@ exports.up = function(knex) {
         t.string('content');
         t.integer('user_id');
         t.integer('channel_id');
-        t.timestamps();
+        t.timestamps(true, true);
     })
 };
 

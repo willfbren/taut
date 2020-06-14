@@ -2,6 +2,7 @@ import { Box, Text, Link, Stack, Icon } from "@chakra-ui/core";
 import React, { useEffect } from "react";
 import AddChannel from "./AddChannel";
 import { useDispatch, useSelector } from 'react-redux'
+import { FaRegComment } from "react-icons/fa"
 
 function ChannelNav() {
     const dispatch = useDispatch()
@@ -44,7 +45,7 @@ function ChannelNav() {
                             mb="10px"
                             onClick={ () => channelSelect(channel)}
                         >
-                            <Icon name="chat" color="gray.400" />
+                            <Box as={FaRegComment} size="16px" color="teal.300" />
                             <Link>{channel.channel_name}</Link>
                         </Stack>
                     </Box>
