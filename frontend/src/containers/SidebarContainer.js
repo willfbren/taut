@@ -4,6 +4,7 @@ import TopNav from "../components/TopNav";
 import ChannelNav from "../components/ChannelNav";
 import SignOut from "../components/SignOut";
 import TeamList from "../components/TeamList";
+import SettingsContainer from "./SettingsContainer"
 
 function SidebarContainer() {
     return (
@@ -13,6 +14,7 @@ function SidebarContainer() {
             <ChannelNav />
             <Divider />
             <TeamList />
+            <SettingsContainer />
             <SignOut />
         </Box>
     );

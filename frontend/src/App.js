@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import socketIo from "socket.io-client";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Home from "./containers/Home";
 import AppContainer from "./containers/AppContainer";
 import { useDispatch, useSelector } from "react-redux";
-
-const socket = socketIo("http://localhost:3000");
 
 function App() {
 	let dispatch = useDispatch();

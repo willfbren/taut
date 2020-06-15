@@ -11,11 +11,11 @@ function TeamList() {
     const [ userList, setUserList ] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/${team.id}/users`)
+        fetch(`http://localhost:3000/${team.id}/users`, { credentials: 'include' })
         .then(res => res.json())
         .then(data => setUserList(data))
     }, [])
-
+    
     return (
         <Box p="15px">
             <Text fontWeight="bold" fontSize="lg" pb="5px">Team Members</Text>

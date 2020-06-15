@@ -54,7 +54,6 @@ app.post("/users", async function (req, res) {
     };
 
     await knex("users").insert(newUser);
-    io.emit("new-user", newUser);
 
     res.json(newUser);
 });
@@ -65,17 +64,19 @@ app.get("/check-user", async (req, res) => {
         user: req.session.user || null,
         team: req.session.team || null,
         channel: req.session.channel || null,
-        channels: req.session.channels || [],
+        channels: req.session.channels || []
     });
 });
 
 app.post("/sign-in", async (req, res) => {
     const { email, password } = req.body.form;
-    const [user] = await knex("users").where({ email });
-    const [user_team] = await knex
+    const [ user ] = await knex("users").where({ email });
+
+    const [ user_team ] = await knex
         .select("*")
         .from("user_team")
         .where("user_id", user.id);
+
     const [team] = await knex
         .select()
         .from("teams")
@@ -84,6 +85,7 @@ app.post("/sign-in", async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user = user;
         req.session.team = team;
+
         res.json({
             success: true,
             user: user,

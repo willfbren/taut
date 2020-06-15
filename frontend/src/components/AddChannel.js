@@ -1,7 +1,7 @@
 import React from "react";
 import {
     Link,
-    IconButton,
+    Icon,
     useDisclosure,
     Stack,
 } from "@chakra-ui/core";
@@ -13,11 +13,9 @@ function AddChannel() {
     return (
         <>
             <Stack isInline display="flex" alignItems="center" mt="25px">
-                <IconButton
-                    icon="add"
+                <Icon
+                    name="plus-square"
                     color="teal.300"
-                    size="sm"
-                    isRound="true"
                     onClick={onOpen}
                 />
                 <Link>Add Channel</Link>
