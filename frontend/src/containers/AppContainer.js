@@ -3,11 +3,16 @@ import React from "react";
 import SidebarContainer from "./SidebarContainer";
 import MainContainer from "./MainContainer";
 
-function AppContainer() {
+function AppContainer() { 
+
 	return (
-		<Grid h="100vh" templateColumns="1fr 3fr">
-			<SidebarContainer />
-			<MainContainer />
+		<Grid gridTemplateColumns="repeat(5, 1fr)" h="100vh">
+			<Grid gridColumn="1">
+				<SidebarContainer />
+			</Grid>
+			<Grid gridColumn="2 / 6">
+				<MainContainer />
+			</Grid>
 		</Grid>
 	);
 }

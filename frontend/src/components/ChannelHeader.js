@@ -6,7 +6,7 @@ function ChannelHeader() {
     const channel = useSelector((state) => state.currentChannel);
 
     return (
-        <Box h="95px" borderBottom="1px" borderColor="gray.600">
+        <Box p="15px">
             <Stack isInline display="flex" alignItems="center">
                 <Box as={FaHashtag} size="24px" />
                 <Text fontSize="3xl">{channel.channel_name}</Text>

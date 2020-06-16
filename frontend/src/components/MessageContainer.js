@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux'
-import { Box, Text } from "@chakra-ui/core";
+import { Box, Text, useColorMode } from "@chakra-ui/core";
 import MessageHeader from './MessageHeader'
 import socketIo from "socket.io-client";
 
@@ -33,8 +33,11 @@ function Message(props) {
         return editedMessage.id === message.id ? setMessage(editedMessage) : null
     }) 
 
+    const { colorMode, toggleColorMode } = useColorMode();
+    const bgColor = { light: "gray.50", dark: "gray.700" };
+
     return (
-        <Box mt={3} p={4} shadow="md" borderWidth="1px" borderRadius={5}>
+        <Box mt={3} p={4} shadow="md" borderWidth="1px" borderRadius={5} bg={bgColor[colorMode]}>
                 <MessageHeader message={props.message} edit={handleEdit} />
                 <Text mt={2}>{message.content}</Text>
         </Box>

@@ -51,7 +51,7 @@ function MessageInput() {
     };
 
     return (
-        <Box h="5%">
+        <Box pl="15px" pr="15px" pt="15px">
             <InputGroup>
                 <Input
                     placeholder="Message..."

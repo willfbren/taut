@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/core";
 
 function MainContainer() {
     return (
-        <Box m={15}>
+        <Box>
             <ChannelContainer />
         </Box>
     );

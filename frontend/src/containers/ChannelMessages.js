@@ -27,7 +27,7 @@ function ChannelMessages() {
     })
 
     return (
-        <Box>
+        <Box p="15px">
             <Stack>
                 {messages.map(message => {
                     return <MessageContainer key={message.id} message={message} />
