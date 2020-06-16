@@ -51,12 +51,26 @@ app.post("/users", async function (req, res) {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        // add avatar
     };
 
     await knex("users").insert(newUser);
 
     res.json(newUser);
 });
+
+app.patch("/users/:id", async (req, res) => {
+    const { name, email, avatar } = req.body.form
+
+    await knex("users")
+        .where({ id: req.params.id })
+        .update({ name: name, email: email, avatar: avatar === "" ? null : avatar });
+
+    const [ user ] = await knex("users").where({ id: req.params.id })
+    req.session.user = user
+
+    res.json(user)
+})
 
 // if user refreshes page i can send a fetch to this endpoint and set the user in redux
 app.get("/check-user", async (req, res) => {
@@ -172,6 +186,12 @@ app.get("/:id/messages", async (req, res) => {
 	res.json(user_messages);
 });
 
+app.get("/messages/:id", async (req, res) => {
+    const [ message ] = await knex("messages").where({ id: req.params.id })
+
+    res.json(message)
+})
+
 app.post("/:id/messages", async (req, res) => {
 	const { name, avatar, user_id, channel_id, content } = req.body.message
 
@@ -188,6 +208,15 @@ app.post("/:id/messages", async (req, res) => {
 	io.emit('new-message', message)
 	res.json(message)
 });
+
+app.patch("/:id/messages", async (req, res) => {
+    const { id, content } = req.body.message
+
+    await knex("messages").where({ id: id }).update({ content: content })
+    const [ message ] = await knex("messages").where({ id: id })
+
+    res.json(message)
+})
 
 http.listen(3000);
 console.log("Listening on port 3000");
