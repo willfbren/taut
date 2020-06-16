@@ -21,6 +21,7 @@ function ChannelMessages() {
 
     }, [selectedChannel]);
 
+    
     socket.on('new-message', message => {
         setMessages([...messages, message])
     })

@@ -215,6 +215,9 @@ app.patch("/:id/messages", async (req, res) => {
     await knex("messages").where({ id: id }).update({ content: content })
     const [ message ] = await knex("messages").where({ id: id })
 
+    const editedMessage = { ...message, id }
+
+    io.emit('edit-message', editedMessage)
     res.json(message)
 })
 

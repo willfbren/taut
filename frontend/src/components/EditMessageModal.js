@@ -13,19 +13,6 @@ function EditMessageModal(props) {
         setMessage({ ...message, [e.target.name]: e.target.value })
     }
 
-    let handleUpdate = () => {
-        fetch(`http://localhost:3000/${channel.id}/messages`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message }),
-            credentials: 'include'
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
-
     return (
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay />
@@ -45,7 +32,7 @@ function EditMessageModal(props) {
                     <Button
                         variantColor="green"
                         mr={3}
-                        onClick={() => handleUpdate()}
+                        onClick={() => props.edit(message)}
                     >
                         Save
                     </Button>

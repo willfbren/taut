@@ -25,7 +25,7 @@ export default function MessageSettings(props) {
                 </MenuList>
             </Menu>
 
-            <EditMessageModal isOpen={isOpen} onClose={onClose} message={props.message} />
+            <EditMessageModal isOpen={isOpen} onClose={onClose} message={props.message} edit={props.edit} />
         </>
     );
 }
