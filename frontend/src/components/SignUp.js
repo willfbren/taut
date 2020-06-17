@@ -19,6 +19,8 @@ function SignUp() {
         name: "",
         email: "",
         password: "",
+        avatar: "",
+        team_code: ""
     };
 
     const [form, setForm] = useState(initialState);
@@ -29,11 +31,8 @@ function SignUp() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                name: form.name,
-                email: form.email,
-                password: form.password,
-            }),
+            body: JSON.stringify({ form }),
+            credentials: 'include'
         }).then(
 			history.push("/sign-in"),
             toast({
@@ -88,7 +87,7 @@ function SignUp() {
                         value={form.email}
                     />
                 </FormControl>
-                <FormControl isRequired mb="20px">
+                <FormControl isRequired mb="15px">
                     <FormLabel htmlFor="password">Password</FormLabel>
                     <Input
                         name="password"
@@ -96,6 +95,24 @@ function SignUp() {
                         type="password"
                         onChange={(e) => setValue(e)}
                         value={form.password}
+                    />
+                </FormControl>
+                <FormControl mb="20px">
+                    <FormLabel>Avatar</FormLabel>
+                    <Input
+                        name="avatar"
+                        placeholder="Avatar"
+                        onChange={(e) => setValue(e)}
+                        value={form.avatar}
+                    />
+                </FormControl>
+                <FormControl isRequired mb="20px">
+                    <FormLabel htmlFor="team_code">Team Code</FormLabel>
+                    <Input
+                        name="team_code"
+                        placeholder="Team Code"
+                        onChange={(e) => setValue(e)}
+                        value={form.team_code}
                     />
                 </FormControl>
                 <Button

@@ -12,7 +12,7 @@ function AddChannel() {
 
     return (
         <>
-            <Stack isInline display="flex" alignItems="center" mt="25px">
+            <Stack isInline display="flex" alignItems="center" mt="10px" p="0 15px">
                 <Icon
                     name="plus-square"
                     color="teal.300"

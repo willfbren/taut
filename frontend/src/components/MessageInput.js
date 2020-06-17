@@ -62,7 +62,7 @@ function MessageInput() {
                     children={
                         <IconButton
                             icon="arrow-forward"
-                            variantColor="teal"
+                            variantColor="purple"
                             onClick={(e) => handleSubmit(e)}
                         />
                     }

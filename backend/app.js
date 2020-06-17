@@ -45,8 +45,6 @@ app.post("/create-team", async (req, res) => {
     const [ newUser ] = await knex("users").insert(user);
     const [ newTeam ] = await knex("teams").insert(team);
 
-    console.log(newUser)
-    console.log(newTeam)
     await knex("user_team").insert({ user_id: newUser, team_id: newTeam })
 })
 
@@ -69,20 +67,6 @@ app.get("/:id/users", async (req, res) => {
     res.json(team)
 })
 
-// users create
-app.post("/users", async function (req, res) {
-    const newUser = {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        // add avatar
-    };
-
-    await knex("users").insert(newUser);
-
-    res.json(newUser);
-});
-
 app.patch("/users/:id", async (req, res) => {
     const { name, email, avatar } = req.body.form
 
@@ -94,6 +78,13 @@ app.patch("/users/:id", async (req, res) => {
     req.session.user = user
 
     res.json(user)
+})
+
+app.get("/userteam", async (req, res) => {
+    const user_team = await knex
+    .select("*")
+    .from("user_team") 
+    res.json(user_team)
 })
 
 // if user refreshes page i can send a fetch to this endpoint and set the user in redux
@@ -140,19 +131,19 @@ app.post("/sign-in", async (req, res) => {
 });
 
 app.post("/sign-up", async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const { name, email, password, team_code, avatar } = req.body.form
+    const [ team ] = await knex('teams').where({ team_code: team_code })
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = {
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword,
-        };
-
-        await knex("users").insert(newUser);
-    } catch {
-        res.redirect("/sign-up");
-    }
+    const newUser = {
+        name: name,
+        email: email,
+        password: hashedPassword,
+        avatar: avatar
+    };
+    
+    const [ user ] = await knex("users").insert(newUser);
+    await knex("user_team").insert({ user_id: user, team_id: team.id })
 });
 
 app.get("/sign-out", async (req, res) => {
@@ -234,15 +225,39 @@ app.post("/:id/messages", async (req, res) => {
 });
 
 app.patch("/:id/messages", async (req, res) => {
-    const { id, content } = req.body.message
+    const { id, content } = req.body.editedMessage
+    const [ previousMessage ] = await knex("messages").where({ id: id })
 
     await knex("messages").where({ id: id }).update({ content: content })
-    const [ message ] = await knex("messages").where({ id: id })
 
-    const editedMessage = { ...message, id }
 
-    io.emit('edit-message', editedMessage)
-    res.json(message)
+    const [ editedMessage ] = await knex('messages')
+        .join('users', "messages.user_id", "=", "users.id")
+        .select(
+            "users.name",
+            "users.avatar",
+            "messages.user_id",
+            "messages.id",
+            "messages.content",
+            "messages.created_at"
+        )
+        .where("messages.id", id)
+
+    // console.log(editedMessage)
+    const user_messages = await knex("users")
+        .join("messages", "users.id", "=", "messages.user_id")
+        .select(
+            "users.name",
+            "users.avatar",
+            "messages.user_id",
+            "messages.id",
+            "messages.content",
+            "messages.created_at"
+        )
+        .where("channel_id", req.params.id);
+
+    io.emit('edited-message', user_messages)
+    res.json(user_messages)
 })
 
 app.delete("/:id/messages", async (req, res) => {
