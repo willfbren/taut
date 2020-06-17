@@ -3,14 +3,17 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, Modal
 import { useSelector } from 'react-redux'
 
 function EditMessageModal(props) {
-    const channel = useSelector(state => state.currentChannel)
 
     const initialState = props.message
-
     const [ message, setMessage ] = useState(initialState)
 
     let handleChange = (e) => {
         setMessage({ ...message, [e.target.name]: e.target.value })
+    }
+
+    let submitAndClose = () => {
+        props.edit(message)
+        props.onClose()
     }
 
     return (
@@ -32,7 +35,7 @@ function EditMessageModal(props) {
                     <Button
                         variantColor="green"
                         mr={3}
-                        onClick={() => props.edit(message)}
+                        onClick={() => submitAndClose()}
                     >
                         Save
                     </Button>

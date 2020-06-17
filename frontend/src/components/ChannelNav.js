@@ -21,6 +21,7 @@ function ChannelNav() {
     }, []);
 
     let channelSelect = (selectedChannel) => {
+        console.log(selectedChannel)
         fetch(`http://localhost:3000/set-channel/${selectedChannel.id}`, {
             credentials: 'include'
         })
@@ -43,7 +44,7 @@ function ChannelNav() {
                             display="flex"
                             alignItems="center"
                             pb="5px"
-                            onClick={ () => channelSelect(channel)}
+                            onClick={() => channelSelect(channel)}
                         >
                             <Box as={FaRegComment} size="16px" color="teal.300" />
                             <Link>{channel.channel_name}</Link>

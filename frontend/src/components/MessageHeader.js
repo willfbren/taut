@@ -16,7 +16,7 @@ export default function MessageHeader(props) {
             <Text fontSize="xs" color="gray.500">
                 {timestamp}
             </Text>
-            {props.message.user_id === user.id ? <MessageSettings message={props.message} edit={props.edit} onClick={null}/> : null}
+            {props.message.user_id === user.id ? <MessageSettings message={props.message} edit={props.edit} delete={props.delete} /> : null}
         </Stack>
     );
 }

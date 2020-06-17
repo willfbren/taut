@@ -21,7 +21,7 @@ export default function MessageSettings(props) {
                 </MenuButton>
                 <MenuList>
                     <MenuItem onClick={onOpen}>Edit Message</MenuItem>
-                    <MenuItem>Delete Message</MenuItem>
+                    <MenuItem onClick={() => props.delete(props.message)}>Delete Message</MenuItem>
                 </MenuList>
             </Menu>
 

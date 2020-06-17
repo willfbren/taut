@@ -38,7 +38,7 @@ function Message(props) {
 
     return (
         <Box mt={3} p={4} shadow="md" borderWidth="1px" borderRadius={5} bg={bgColor[colorMode]}>
-                <MessageHeader message={props.message} edit={handleEdit} />
+                <MessageHeader message={props.message} edit={handleEdit} delete={props.delete} />
                 <Text mt={2}>{message.content}</Text>
         </Box>
     );

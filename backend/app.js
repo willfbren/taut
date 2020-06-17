@@ -26,6 +26,30 @@ app.use(
     })
 );
 
+app.post("/create-team", async (req, res) => {
+    const { name, email, password, team_name, team_code, avatar } = req.body.form
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = {
+        name: name,
+        email: email,
+        password: hashedPassword,
+        avatar: avatar
+    };
+
+    const team = {
+        team_name: team_name,
+        team_code: team_code
+    }
+
+    const [ newUser ] = await knex("users").insert(user);
+    const [ newTeam ] = await knex("teams").insert(team);
+
+    console.log(newUser)
+    console.log(newTeam)
+    await knex("user_team").insert({ user_id: newUser, team_id: newTeam })
+})
+
 // users index
 app.get("/users", async function (req, res) {
     const users = await knex.select("*").from("users");
@@ -157,11 +181,11 @@ app.post("/add-channel", async (req, res) => {
         team_id: req.session.team.id,
     };
 
-    await knex("channels").insert(newChannel);
+    const [id] = await knex("channels").insert(newChannel);
+    const newChanWithId = {...newChannel, id}
+    req.session.channel = newChanWithId;
 
-    req.session.channel = newChannel;
-
-    res.json(newChannel);
+    res.json(newChanWithId);
 });
 
 app.get("/set-channel/:id", async (req, res) => {
@@ -219,6 +243,24 @@ app.patch("/:id/messages", async (req, res) => {
 
     io.emit('edit-message', editedMessage)
     res.json(message)
+})
+
+app.delete("/:id/messages", async (req, res) => {
+    await knex("messages").where({ id: req.body.message.id }).del()
+
+    const user_messages = await knex("users")
+        .join("messages", "users.id", "=", "messages.user_id")
+        .select(
+            "users.name",
+            "users.avatar",
+            "messages.user_id",
+            "messages.id",
+            "messages.content",
+            "messages.created_at"
+        )
+        .where("channel_id", req.params.id);
+
+    io.emit('deleted-message', user_messages)
 })
 
 http.listen(3000);
