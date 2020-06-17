@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/core";
-import MessageHeader from './MessageHeader'
+import MessageHeader from '../components/MessageHeader'
 
 function Message(props) {
 
-    const { colorMode, toggleColorMode } = useColorMode();
+    const { colorMode } = useColorMode();
     const bgColor = { light: "gray.50", dark: "gray.700" };
 
     return (

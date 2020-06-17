@@ -9,7 +9,7 @@ import MessageInput from "../components/MessageInput"
 function ChannelContainer() {
     const currentChannel = useSelector((state) => state.currentChannel);
 
-    const { colorMode, toggleColorMode } = useColorMode();
+    const { colorMode } = useColorMode();
     const borderColor = { light: "gray.300", dark: "teal.700" };
 
     return (

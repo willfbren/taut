@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Box, Stack } from "@chakra-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import MessageContainer from "../components/MessageContainer";
+import MessageContainer from "./MessageContainer";
 import socketIo from "socket.io-client";
 
 const socket = socketIo("http://localhost:3000");

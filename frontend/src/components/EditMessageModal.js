@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Textarea, ModalFooter, Button } from '@chakra-ui/core'
-import { useSelector } from 'react-redux'
 
 function EditMessageModal(props) {
 

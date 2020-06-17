@@ -8,7 +8,7 @@ import SettingsContainer from "./SettingsContainer"
 
 function SidebarContainer() {
 
-    const { colorMode, toggleColorMode } = useColorMode();
+    const { colorMode } = useColorMode();
     const borderColor = { light: "gray.300", dark: "teal.700" };
 
     return (

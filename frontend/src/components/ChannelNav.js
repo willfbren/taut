@@ -11,7 +11,7 @@ function ChannelNav() {
     const channels = useSelector(state => state.channels)
     const currentChannel = useSelector(state => state.currentChannel)
 
-    const { colorMode, toggleColorMode } = useColorMode();
+    const { colorMode } = useColorMode();
     const bgColor = { light: "purple.100", dark: "purple.500" };
 
     useEffect(() => {
