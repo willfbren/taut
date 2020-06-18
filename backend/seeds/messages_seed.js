@@ -1,7 +1,5 @@
 const faker = require('faker')
 
-faker.random.number({ min: 1, max: 3 });
-
 exports.seed = function (knex) {
     // Deletes ALL existing entries
     return knex("messages")

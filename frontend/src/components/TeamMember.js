@@ -3,8 +3,8 @@ import { Flex, Avatar, Box, Text, Stack } from '@chakra-ui/core'
 
 function TeamMember(props) {
     return (
-        <Stack>
-            <Flex alignItems="center" pb="10px">
+        <Stack pb="15px">
+            <Flex alignItems="center">
                 <Avatar src={props.user.avatar} name={props.user.name} size="xs" />
                 <Box ml="3">
                     <Text>

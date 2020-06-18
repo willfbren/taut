@@ -5,12 +5,12 @@ import {
     InputGroup,
     InputRightElement,
     InputLeftElement,
-    IconButton
+    IconButton,
 } from "@chakra-ui/core";
 import { useSelector } from "react-redux";
-import { FaRegSmile } from 'react-icons/fa'
-import 'emoji-mart/css/emoji-mart.css'
-import { Picker } from 'emoji-mart'
+import { FaRegSmile } from "react-icons/fa";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 function MessageInput() {
     const user = useSelector((state) => state.currentUser);
@@ -27,7 +27,7 @@ function MessageInput() {
     const [message, setMessage] = useState(messageState);
 
     let setValue = (e) => {
-        setMessage({...message, content: e.target.value });
+        setMessage({ ...message, content: e.target.value });
     };
 
     let handleSubmit = (e) => {
@@ -49,32 +49,44 @@ function MessageInput() {
     };
 
     const [emojiPickerState, SetEmojiPicker] = useState(false);
-  
+
     let emojiPicker;
     if (emojiPickerState) {
-      emojiPicker = (
-        <Picker
-          title="Pick your emoji…"
-          emoji="point_up"
-          onSelect={emoji => pickEmoji(emoji)}
-        />
-      );
+        emojiPicker = (
+            <Picker
+                title="Pick your emoji…"
+                emoji="point_up"
+                onSelect={(emoji) => pickEmoji(emoji)}
+                style={{ position: "absolute", bottom: "60px", left: "250px" }}
+            />
+        );
     }
 
     let pickEmoji = (emoji) => {
-        setMessage({...message, content: message.content + emoji.native})
-        return triggerPicker()
-    }
-  
+        setMessage({ ...message, content: message.content + emoji.native });
+        return triggerPicker();
+    };
+
     function triggerPicker(event) {
-      SetEmojiPicker(!emojiPickerState);
+        SetEmojiPicker(!emojiPickerState);
     }
 
     return (
         <Box pl="15px" pr="15px" pt="15px">
-            <Box pos="absolute" left="0" bottom="0">{emojiPicker}</Box>
+            <Box pos="absolute" left="0" bottom="0">
+                {emojiPicker}
+            </Box>
             <InputGroup>
-            <InputLeftElement children={<Box as={FaRegSmile} color="gray.300" cursor="pointer" onClick={triggerPicker}/>} />
+                <InputLeftElement
+                    children={
+                        <Box
+                            as={FaRegSmile}
+                            color="gray.300"
+                            cursor="pointer"
+                            onClick={triggerPicker}
+                        />
+                    }
+                />
                 <Input
                     placeholder="Message..."
                     value={message.content}
@@ -84,7 +96,7 @@ function MessageInput() {
                     children={
                         <IconButton
                             icon="arrow-forward"
-                            variantColor="purple"
+                            variantColor="teal"
                             onClick={(e) => handleSubmit(e)}
                         />
                     }

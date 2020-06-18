@@ -20,10 +20,10 @@ function ChannelContainer() {
                     <Box h="10vh" borderBottom="1px" borderBottomColor={borderColor[colorMode]}>
                         <ChannelHeader />
                     </Box>
-                    <Box h="83vh" overflow="scroll" borderBottom="1px" borderBottomColor={borderColor[colorMode]}>
+                    <Box h="82vh" overflow="scroll" borderBottom="1px" borderBottomColor={borderColor[colorMode]}>
                         <ChannelMessages/>
                     </Box>
-                    <Box h="6vh">
+                    <Box h="8vh">
                         <MessageInput/>
                     </Box>
                 </>

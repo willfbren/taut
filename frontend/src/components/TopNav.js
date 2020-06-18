@@ -7,13 +7,13 @@ function TopNav() {
     const team = useSelector(state => state.currentTeam);
 
     return (
-        <Box p="15px" minH="75px">
-            <Text fontWeight="700" fontSize="lg" mb="10px">
+        <Box p="20px">
+            <Text fontWeight="700" fontSize="2xl" pb="10px">
                 {team.team_name}
             </Text>
             <Stack isInline display="flex" alignItems="center" >
-                <Avatar name={user.name} src={ user.avatar ? user.avatar : null } size="sm" />
-                <Text>{user.name}</Text>
+                <Avatar name={user.name} src={ user.avatar ? user.avatar : null } size="md" />
+                <Text fontSize="lg">{user.name}</Text>
             </Stack>
         </Box>
     );

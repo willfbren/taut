@@ -2,7 +2,6 @@ import { Box, useColorMode } from "@chakra-ui/core";
 import React from "react";
 import TopNav from "../components/TopNav";
 import ChannelNav from "../components/ChannelNav";
-import SignOut from "../components/SignOut";
 import TeamList from "../components/TeamList";
 import SettingsContainer from "./SettingsContainer"
 
@@ -17,7 +16,6 @@ function SidebarContainer() {
             <ChannelNav />
             <TeamList />
             <SettingsContainer />
-            <SignOut />
         </Box>
     );
 }

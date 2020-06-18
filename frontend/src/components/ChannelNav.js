@@ -12,7 +12,7 @@ function ChannelNav() {
     const currentChannel = useSelector(state => state.currentChannel)
 
     const { colorMode } = useColorMode();
-    const bgColor = { light: "purple.100", dark: "purple.500" };
+    const bgColor = { light: "teal.100", dark: "teal.800" };
 
     useEffect(() => {
         fetch(`http://localhost:3000/${team.id}/channels`, {
@@ -36,21 +36,21 @@ function ChannelNav() {
 
     return (
         <Box>
-            <Text fontWeight="bold" fontSize="lg" p="0 15px 5px 15px">
+            <Text fontWeight="bold" fontSize="xl" p="20px 20px 5px 20px">
                 Channels
             </Text>
             {channels.map((channel) => {
                 return (
-                    <Box key={channel.id} p="5px 0" backgroundColor={currentChannel && channel.id === currentChannel.id ? bgColor[colorMode] : null}>
+                    <Box key={channel.id} backgroundColor={currentChannel && channel.id === currentChannel.id ? bgColor[colorMode] : null}>
                         <Stack
                             isInline
                             display="flex"
                             alignItems="center"
                             onClick={() => channelSelect(channel)}
-                            pl="15px"
+                            p="5px 20px"
                         >
-                            <Box as={FaComment} size="16px" color="teal.300" />
-                            <Link>{channel.channel_name}</Link>
+                            <Box as={FaComment} size="18px" color="teal.300" />
+                            <Text as={Link} fontSize="lg" fontWeight={currentChannel && channel.id === currentChannel.id ? "bold" : null}>{channel.channel_name}</Text>
                         </Stack>
                     </Box>
                 );

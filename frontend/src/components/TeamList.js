@@ -17,8 +17,8 @@ function TeamList() {
     }, [])
     
     return (
-        <Box p="15px">
-            <Text fontWeight="bold" fontSize="lg" pb="5px">Team Members</Text>
+        <Box p="20px">
+            <Text fontWeight="bold" fontSize="xl" pb="10px">Team Members</Text>
             {userList.map(user => user.id === currentUser.id ? null : <TeamMember key={user.id} user={user}/>)}
         </Box>
     );
