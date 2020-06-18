@@ -6,10 +6,14 @@ import Home from "./containers/Home";
 import AppContainer from "./containers/AppContainer";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTeam from "./components/CreateTeam";
+import socketIo from "socket.io-client";
+
+const socket = socketIo("http://localhost:3000");
 
 function App() {
 	let dispatch = useDispatch();
 	let user = useSelector((state) => state.currentUser);
+	let currentUsers = useSelector(state => state.users)
 
 	useEffect(() => {
 		fetch("http://localhost:3000/check-user", {
@@ -24,6 +28,16 @@ function App() {
 				}
 			});
 	}, []);
+
+	console.log(currentUsers)
+
+	socket.on('sign-in', data => {
+		dispatch({ type: 'ADD_USER', user: data.id })
+	})	
+
+	socket.on('sign-out', data => {
+		dispatch({ type: 'REMOVE_USER', user: data.id })
+	})
 
 	return user ? (
 		<BrowserRouter>

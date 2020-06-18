@@ -12,29 +12,39 @@ function Home() {
             size="750px"
             mx="auto"
         >
-            <Stack>
-                <Box>
-                    <Text fontSize="6xl" textAlign="center">
-                        Taut
-                    </Text>
-                    <Button
-                        variantColor="teal"
-                        mr="5px"
-                        onClick={() => history.push("/sign-up")}
-                    >
-                        Sign Up
-                    </Button>
-                    <Button
-                        variantColor="blue"
-                        ml="5px"
-                        onClick={() => history.push("/sign-in")}
-                    >
-                        Sign In
-                    </Button>
+            <Box textAlign="center">
+                <Text fontSize="6xl" textAlign="center">
+                    taut
+                </Text>
+                <Text fontSize="sm" color="gray.500">
+                    <i>adjective</i> · <strong>/tôt/</strong> · stretched or pulled tight; not slack
+                </Text>
+                <Box mt="25px">
+                <Button
+                    variantColor="teal"
+                    mr="5px"
+                    onClick={() => history.push("/sign-up")}
+                >
+                    Sign Up
+                </Button>
+                <Button
+                    variantColor="blue"
+                    ml="5px"
+                    onClick={() => history.push("/sign-in")}
+                >
+                    Sign In
+                </Button>
+                <Text fontSize="xs" textAlign="center" m="10px 0" color="gray.500">
+                    or
+                </Text>
+                <Button
+                    variantColor="purple"
+                    onClick={() => history.push("/create-team")}
+                >
+                    Create a Team
+                </Button>
                 </Box>
-				<Text fontSize="xs" textAlign="center">or</Text>
-				<Button variantColor="purple" onClick={() => history.push("/create-team")}>Create a Team</Button>
-            </Stack>
+            </Box>
         </Flex>
     );
 }

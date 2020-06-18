@@ -2,6 +2,9 @@ import React from "react";
 import { Box, useColorMode } from "@chakra-ui/core";
 import MessageHeader from "../components/MessageHeader";
 import Markdown from "markdown-to-jsx";
+import ReactMarkdown from 'react-markdown'
+import MessageContent from "./MessageContent";
+import Linkify from 'react-linkify';
 
 function Message(props) {
     const { colorMode } = useColorMode();
@@ -21,8 +24,8 @@ function Message(props) {
                 edit={props.edit}
                 delete={props.delete}
             />
-            <Box mt={2}>
-                <Markdown options={{ forceBlock: true }}>{props.message.content}</Markdown>
+            <Box mt={2}>                
+                <ReactMarkdown source={props.message.content} />
             </Box>
         </Box>
     );

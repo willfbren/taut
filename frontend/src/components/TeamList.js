@@ -15,7 +15,7 @@ function TeamList() {
         .then(res => res.json())
         .then(data => setUserList(data))
     }, [])
-    
+
     return (
         <Box p="20px">
             <Text fontWeight="bold" fontSize="xl" pb="10px">Team Members</Text>

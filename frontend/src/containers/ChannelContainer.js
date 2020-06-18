@@ -17,10 +17,10 @@ function ChannelContainer() {
             {currentChannel
                 ?
                 <>
-                    <Box h="10vh" borderBottom="1px" borderBottomColor={borderColor[colorMode]}>
+                    <Box h="8vh">
                         <ChannelHeader />
                     </Box>
-                    <Box h="82vh" overflow="scroll" borderBottom="1px" borderBottomColor={borderColor[colorMode]}>
+                    <Box h="84vh" overflow="scroll" borderBottom="1px" borderBottomColor={borderColor[colorMode]}>
                         <ChannelMessages/>
                     </Box>
                     <Box h="8vh">

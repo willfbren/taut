@@ -21,7 +21,7 @@ function MessageInput() {
         avatar: user.avatar,
         user_id: user.id,
         channel_id: channel.id,
-        content: "",
+        content: ``,
     };
 
     const [message, setMessage] = useState(messageState);

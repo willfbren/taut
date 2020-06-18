@@ -22,7 +22,19 @@ const reducer = (currentState, action) => {
 			return { ...currentState, users: action.userList}
 			break;
 		case 'ADD_USER':
-			return { ...currentState, users: [...currentState.users, action.user] }
+			if (currentState.users.find(user => user === action.user) ? null : [...currentState.users, action.user]) {
+				return { 
+					...currentState, 
+					users: [...currentState.users, action.user]
+				}
+			}
+			break;
+		case 'REMOVE_USER':
+			let updatedUsers = currentState.users.filter(user => user !== action.user)
+			return {
+				...currentState,
+				users: updatedUsers
+			}
 			break;
 		case 'LOGIN_SUCCESS':
 			return { ...currentState, currentUser: action.user, currentTeam: action.team, currentChannel: action.channel }

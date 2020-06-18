@@ -33,16 +33,28 @@ function SignUp() {
             },
             body: JSON.stringify({ form }),
             credentials: 'include'
-        }).then(
-			history.push("/sign-in"),
-            toast({
-                title: "Account Created",
-                description: "You are now able to sign in.",
-                status: "success",
-                isClosable: true,
-                position: "top",
-            })
-        );
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                history.push("/sign-in")
+                return toast({
+                    title: "Account Created",
+                    description: "You are now able to sign in.",
+                    status: "success",
+                    isClosable: true,
+                    position: "top",
+                })
+            } else {
+                return toast({
+                    title: "Incorrect team code.",
+                    description: data.message,
+                    status: "error",
+                    isClosable: true,
+                    position: "top",
+                })
+            }
+        });
     };
 
     let setValue = (e) => {

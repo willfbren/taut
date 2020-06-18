@@ -95,6 +95,10 @@ app.get("/check-user", async (req, res) => {
         channel: req.session.channel || null,
         channels: req.session.channels || []
     });
+
+    if(req.session.user) {
+        io.emit('sign-in', { id: req.session.user.id })
+    }
 });
 
 app.post("/sign-in", async (req, res) => {
@@ -112,6 +116,9 @@ app.post("/sign-in", async (req, res) => {
         .where({ id: user_team.team_id });
 
     if (user && (await bcrypt.compare(password, user.password))) {
+        
+        io.emit('sign-in', { id: user.id })
+        
         req.session.user = user;
         req.session.team = team;
 
@@ -120,6 +127,7 @@ app.post("/sign-in", async (req, res) => {
             user: user,
             team: team,
         });
+
     } else {
         res.json({
             success: false,
@@ -142,11 +150,27 @@ app.post("/sign-up", async (req, res) => {
         avatar: avatar
     };
     
-    const [ user ] = await knex("users").insert(newUser);
-    await knex("user_team").insert({ user_id: user, team_id: team.id })
+    if(team) {
+        const [ user ] = await knex("users").insert(newUser);
+        await knex("user_team").insert({ user_id: user, team_id: team.id })
+
+        res.json({
+            success: true
+        })
+    } else {
+        res.json({
+            success: false,
+            message: "Team does not exist"
+        })
+    }
+
 });
 
+
+
 app.get("/sign-out", async (req, res) => {
+    io.emit('sign-out', {id: req.session.user.id})
+
     req.session.destroy();
 });
 

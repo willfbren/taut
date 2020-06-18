@@ -1,12 +1,16 @@
 import React from "react";
 import { Menu, MenuButton, Button, MenuList, MenuItem, useDisclosure, useColorMode, useToast, Text } from "@chakra-ui/core";
 import ProfileDrawer from "../components/ProfileDrawer";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import socketIo from "socket.io-client";
+
+const socket = socketIo("http://localhost:3000");
 
 export default function SettingsContainer() {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
+    const user = useSelector(state => state.currentUser)
 
     let toast = useToast();
 	let dispatch = useDispatch();
@@ -25,7 +29,7 @@ export default function SettingsContainer() {
 					isClosable: true,
 					position: "top",
 				})
-			);
+            );
 	};
 
     return (
