@@ -11,7 +11,7 @@ function TeamList() {
     const [ userList, setUserList ] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/${team.id}/users`, { credentials: 'include' })
+        fetch(`http://localhost:3000/teams/${team.id}/users`, { credentials: 'include' })
         .then(res => res.json())
         .then(data => setUserList(data))
     }, [])

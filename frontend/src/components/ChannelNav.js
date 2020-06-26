@@ -15,7 +15,7 @@ function ChannelNav() {
     const bgColor = { light: "teal.100", dark: "teal.800" };
 
     useEffect(() => {
-        fetch(`http://localhost:3000/${team.id}/channels`, {
+        fetch(`http://localhost:3000/teams/${team.id}/channels`, {
             credentials: "include",
         })
         .then((res) => res.json())

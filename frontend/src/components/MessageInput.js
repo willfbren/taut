@@ -32,7 +32,7 @@ function MessageInput() {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/${channel.id}/messages`, {
+        fetch(`http://localhost:3000/channels/${channel.id}/messages`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

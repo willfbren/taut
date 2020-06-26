@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import MessageContainer from "./MessageContainer";
 import socketIo from "socket.io-client";
 
-const socket = socketIo("http://localhost:3000");
+const socket = socketIo("http://localhost:3000/");
 
 function ChannelMessages() {
     const dispatch = useDispatch()
@@ -12,7 +12,7 @@ function ChannelMessages() {
     const messages = useSelector(state => state.channelMessages)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/${channel.id}/messages`, {
+        fetch(`http://localhost:3000/channels/${channel.id}/messages`, {
             credentials: "include",
         })
         .then((res) => res.json())
@@ -23,7 +23,7 @@ function ChannelMessages() {
     }, [channel]);
 
     let handleDelete = (message) => {
-        fetch(`http://localhost:3000/${channel.id}/messages`, {
+        fetch(`http://localhost:3000/channels/${channel.id}/messages`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ function ChannelMessages() {
     }
 
     let handleEdit = (editedMessage) => {
-        fetch(`http://localhost:3000/${channel.id}/messages`, {
+        fetch(`http://localhost:3000/channels/${channel.id}/messages`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

@@ -102,7 +102,7 @@ export default function CreateTeam() {
                         value={form.password}
                     />
                 </FormControl>
-                <FormControl isRequired mb="20px">
+                <FormControl mb="20px">
                     <FormLabel htmlFor="password">Avatar</FormLabel>
                     <Input
                         name="avatar"
