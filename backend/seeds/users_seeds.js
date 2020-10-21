@@ -12,9 +12,9 @@ exports.seed = function (knex) {
             return knex("users").insert([
                 {
                     id: 1,
-                    email: "willfbren@gmail.com",
+                    email: "test@gmail.com",
                     password: hash,
-                    name: "Will Brennan",
+                    name: "John Doe",
                     avatar: null
                 },
                 {
