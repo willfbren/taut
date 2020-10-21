@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h2 align="center">Taut</h2>
+  <h1 align="center">Taut</h1>
 
   <p align="center">
     Real-time chat-based application allowing teams to communicate through different channels
