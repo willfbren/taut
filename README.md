@@ -1,6 +1,7 @@
 # Taut
 
 Real-time chat-based application allowing teams to communicate through different channels
+<br/>
 [View Demo](https://youtu.be/N7wtyRBdDFo)
 
 <!-- ABOUT THE PROJECT -->
