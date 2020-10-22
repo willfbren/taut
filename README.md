@@ -1,28 +1,7 @@
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <h1 align="center">Taut</h1>
+# Taut
 
-  <p align="center">
-    Real-time chat-based application allowing teams to communicate through different channels
-    <br />
-    <a href="https://youtu.be/N7wtyRBdDFo">View Demo</a>
-  </p>
-</p>
-
-
-
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-
-
-
+Real-time chat-based application allowing teams to communicate through different channels
+[View Demo](https://youtu.be/N7wtyRBdDFo)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
