@@ -40,7 +40,7 @@ git clone git@github.com:willfbren/taut.git
 ```
 2. Install backend NPM packages
 ```sh
-cd backend
+cd server
 npm install
 ```
 2. Run database migration
@@ -51,17 +51,17 @@ npx knex migrate:make
 
 3. Install frontend NPM packages
 ```sh
-cd frontend
+cd client
 npm install
 ```
 4. Start local nodemon server
 ```sh
-cd backend
+cd server
 npm start
 ```
 5. Start frontend
 ```sh
-cd frontend
+cd client
 npm start
 ```
 > If you seeded the database, you can login with test credentials (test@gmail.com / password). If you create a new user, you can use the team code: learn-code.
