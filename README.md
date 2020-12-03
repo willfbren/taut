@@ -1,8 +1,10 @@
 # Taut
 
 Real-time chat-based application allowing teams to communicate through different channels
-<br/>
-[View Demo](https://youtu.be/N7wtyRBdDFo)
+>[View Demo](https://youtu.be/N7wtyRBdDFo)
+
+## Screenshot
+![preview](https://raw.githubusercontent.com/willfbren/taut/master/frontend/public/preview.png)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
